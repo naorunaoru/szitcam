@@ -1,5 +1,5 @@
 /**
- * Scope — browser-only UseePlus camera viewer.
+ * szitcam — browser-only UseePlus camera viewer.
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
