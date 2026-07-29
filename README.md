@@ -1,7 +1,7 @@
-# Scope — UseePlus WebUSB viewer
+# szitcam — UseePlus WebUSB viewer
 
 A zero-install, browser-only viewer for UseePlus USB endoscope and microscope
-cameras using the Geek szitman `supercamera` chipset.
+cameras identifying as `Geek szitman supercamera`.
 
 The page talks directly to the camera with WebUSB. Frames are decoded locally
 and never leave the browser.
@@ -39,15 +39,6 @@ npm run serve
 
 Then open <http://localhost:4173> in desktop Chrome or Edge and choose
 **Connect camera**. Safari and Firefox do not currently expose WebUSB.
-
-## Publish with GitHub Pages
-
-This project is deliberately build-free. Put these files at the root of a
-GitHub repository, enable Pages for the `main` branch in
-**Settings → Pages**, and select **Deploy from a branch**.
-
-GitHub Pages serves the site over HTTPS, which satisfies WebUSB's secure-context
-requirement.
 
 ## Privacy and security
 
