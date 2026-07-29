@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A WebUSB viewer for compatible UseePlus USB cameras."
+    />
+    <meta name="theme-color" content="#0b0d0c" />
+    <title>Scope — UseePlus WebUSB viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Scope home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Scope</span>
+          <span class="build-label">WebUSB</span>
+        </a>
+
+        <div class="connection-state" aria-live="polite">
+          <span class="state-dot" id="stateDot"></span>
+          <span id="connectionLabel">Camera offline</span>
+        </div>
+
+        <button class="button button-primary" id="connectButton" type="button">
+          Connect camera
+        </button>
+      </header>
+
+      <main>
+        <section class="viewer" id="viewer">
+          <canvas id="frameCanvas" aria-label="Live camera image"></canvas>
+
+          <div class="empty-state" id="emptyState">
+            <p class="eyebrow">USB 2CE3:3828</p>
+            <h1>UseePlus camera viewer</h1>
+            <p class="empty-copy">
+              Connect a compatible camera to view its feed.
+            </p>
+            <button class="button button-primary" id="heroConnectButton" type="button">
+              Connect camera
+            </button>
+            <p class="compatibility" id="compatibilityNote">
+              Requires Chrome or Edge on desktop.
+            </p>
+          </div>
+
+          <div class="viewer-hud viewer-hud-top" id="viewerHudTop" hidden>
+            <span class="live-pill"><span></span> Live</span>
+            <span id="resolutionLabel">—</span>
+          </div>
+
+          <div class="viewer-hud viewer-hud-bottom" id="viewerHudBottom" hidden>
+            <div class="stat">
+              <span class="stat-label">Frame rate</span>
+              <strong id="fpsValue">0.0 fps</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Frames</span>
+              <strong id="framesValue">0</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Transfer</span>
+              <strong id="transferValue">0 KB/s</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-deck" aria-label="Camera controls">
+          <div class="control-group">
+            <button class="control-button" id="snapshotButton" type="button" disabled>
+              <span class="control-icon camera-icon" aria-hidden="true"></span>
+              Snapshot
+            </button>
+            <button
+              class="control-button"
+              id="cameraSwitchButton"
+              type="button"
+              aria-label="How to switch between the camera lenses"
+              title="Hold the physical camera button to switch lenses"
+              disabled
+            >
+              <span class="control-icon lenses-icon" aria-hidden="true"></span>
+              <span id="cameraSwitchLabel">Switch lens</span>
+            </button>
+            <button class="control-button" id="fullscreenButton" type="button" disabled>
+              <span class="control-icon fullscreen-icon" aria-hidden="true"></span>
+              Fullscreen
+            </button>
+          </div>
+
+          <div class="control-group">
+            <button class="control-button" id="fitButton" type="button" disabled>
+              <span class="control-icon fit-icon" aria-hidden="true"></span>
+              <span id="fitButtonLabel">Fit</span>
+            </button>
+            <button class="control-button" id="mirrorButton" type="button" disabled>
+              <span class="control-icon mirror-icon" aria-hidden="true">↔</span>
+              Mirror
+            </button>
+            <button class="control-button" id="rotateButton" type="button" disabled>
+              <span class="control-icon rotate-icon" aria-hidden="true">↻</span>
+              Rotate
+            </button>
+          </div>
+
+          <button
+            class="control-button diagnostics-toggle"
+            id="diagnosticsButton"
+            type="button"
+            aria-expanded="false"
+            aria-controls="diagnostics"
+          >
+            <span class="control-icon terminal-icon" aria-hidden="true">&gt;_</span>
+            Diagnostics
+          </button>
+        </section>
+
+        <section class="diagnostics" id="diagnostics" hidden>
+          <div class="diagnostics-heading">
+            <div>
+              <p class="eyebrow">Session log</p>
+              <h2>Diagnostics</h2>
+            </div>
+            <button class="text-button" id="copyLogButton" type="button">Copy log</button>
+          </div>
+          <pre id="diagnosticLog" aria-live="polite"></pre>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          GPL-3.0 ·
+          <a href="https://github.com/linus-skold/useeplus-windows-viewer">Protocol reference</a>
+        </p>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js?v=20260729-3"></script>
+  </body>
+</html>
